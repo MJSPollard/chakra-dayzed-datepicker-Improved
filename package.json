@@ -42,7 +42,7 @@
   "jest": {
     "testEnvironment": "jsdom"
   },
-  "name": "chakra-dayzed-datepicker",
+  "name": "@mjspollard/chakra-dayzed-datepicker",
   "author": "aboveyunhai",
   "description": "chakra + dayzed = datepicker",
   "module": "dist/chakra-dayzed-datepicker.esm.js",
