@@ -1,5 +1,5 @@
 {
-  "version": "0.2.9",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -7,11 +7,6 @@
     "dist",
     "src"
   ],
-  "homepage": "https://aboveyunhai.github.io/chakra-dayzed-datepicker",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aboveyunhai/chakra-dayzed-datepicker.git"
-  },
   "engines": {
     "node": ">=10"
   },
@@ -42,7 +37,7 @@
   "jest": {
     "testEnvironment": "jsdom"
   },
-  "name": "@mjspollard/chakra-dayzed-datepicker",
+  "name": "chakra-dp-custom",
   "author": "aboveyunhai",
   "description": "chakra + dayzed = datepicker",
   "module": "dist/chakra-dayzed-datepicker.esm.js",
@@ -78,5 +73,17 @@
   },
   "dependencies": {
     "react-focus-lock": "^2.9.2"
-  }
+  },
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MJSPollard/chakra-dayzed-datepicker-Improved.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MJSPollard/chakra-dayzed-datepicker-Improved/issues"
+  },
+  "homepage": "https://github.com/MJSPollard/chakra-dayzed-datepicker-Improved#readme"
 }
