@@ -17,6 +17,7 @@ export interface DatepickerProps {
   minDate?: Date;
   maxDate?: Date;
   propsConfigs?: PropsConfigs;
+  children?: React.ReactNode;
 }
 
 export interface DayOfMonthBtnStyleProps {
