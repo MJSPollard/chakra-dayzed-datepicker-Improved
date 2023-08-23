@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Input,
+  Placement,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -33,6 +34,7 @@ export interface SingleDatepickerProps extends DatepickerProps {
   id?: string;
   name?: string;
   usePortal?: boolean;
+  placement?: Placement;
 }
 
 const DefaultConfigs: CalendarConfigs = {
@@ -49,6 +51,7 @@ export const SingleDatepicker: React.FC<SingleDatepickerProps> = ({
   disabledDates,
   defaultIsOpen = false,
   closeOnSelect = true,
+  children,
   ...props
 }) => {
   const {
@@ -59,6 +62,7 @@ export const SingleDatepicker: React.FC<SingleDatepickerProps> = ({
     id,
     minDate,
     maxDate,
+    placement = 'bottom-start',
   } = props;
 
   const [dateInView, setDateInView] = useState(selectedDate);
@@ -91,7 +95,7 @@ export const SingleDatepicker: React.FC<SingleDatepickerProps> = ({
 
   return (
     <Popover
-      placement="bottom-start"
+      placement={placement}
       variant="responsive"
       isOpen={isOpen}
       onOpen={onOpen}
@@ -99,23 +103,27 @@ export const SingleDatepicker: React.FC<SingleDatepickerProps> = ({
       isLazy
     >
       <PopoverTrigger>
-        <Input
-          onKeyPress={(e) => {
-            if (e.key === ' ' && !isOpen) {
-              e.preventDefault();
-              onOpen();
-            }
-          }}
-          id={id}
-          autoComplete="off"
-          isDisabled={disabled}
-          name={name}
-          value={
-            selectedDate ? format(selectedDate, calendarConfigs.dateFormat) : ''
-          }
-          onChange={(e) => e.target.value}
-          {...propsConfigs?.inputProps}
-        />
+      {children
+          ? children
+          : (
+            <Input
+              onKeyPress={(e) => {
+                if (e.key === ' ' && !isOpen) {
+                  e.preventDefault();
+                  onOpen();
+                }
+              }}
+              id={id}
+              autoComplete="off"
+              isDisabled={disabled}
+              name={name}
+              value={
+                selectedDate ? format(selectedDate, calendarConfigs.dateFormat) : ''
+              }
+              onChange={(e) => e.target.value}
+              {...propsConfigs?.inputProps}
+            />
+          )}
       </PopoverTrigger>
       <PopoverContentWrapper>
         <PopoverContent

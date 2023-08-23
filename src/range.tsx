@@ -4,6 +4,7 @@ import { Month_Names_Short, Weekday_Names_Short } from './utils/calanderUtils';
 import {
   Flex,
   Input,
+  Placement,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -90,6 +91,7 @@ export interface RangeDatepickerProps extends DatepickerProps {
   id?: string;
   name?: string;
   usePortal?: boolean;
+  placement?: Placement;
 }
 
 const DefaultConfigs: CalendarConfigs = {
@@ -107,6 +109,8 @@ export const RangeDatepicker: React.FC<RangeDatepickerProps> = ({
   usePortal,
   defaultIsOpen = false,
   closeOnSelect = true,
+  placement = 'bottom-start',
+  children,
   ...props
 }) => {
   const { selectedDates, minDate, maxDate, onDateChange, disabled } = props;
@@ -168,7 +172,7 @@ export const RangeDatepicker: React.FC<RangeDatepickerProps> = ({
 
   return (
     <Popover
-      placement="bottom-start"
+      placement={placement}
       variant="responsive"
       isOpen={isOpen}
       onOpen={onOpen}
@@ -176,21 +180,25 @@ export const RangeDatepicker: React.FC<RangeDatepickerProps> = ({
       isLazy
     >
       <PopoverTrigger>
-        <Input
-          onKeyPress={(e) => {
-            if (e.key === ' ' && !isOpen) {
-              e.preventDefault();
-              onOpen();
-            }
-          }}
-          id={id}
-          autoComplete="off"
-          isDisabled={disabled}
-          name={name}
-          value={intVal}
-          onChange={(e) => e.target.value}
-          {...propsConfigs.inputProps}
-        />
+        {children
+          ? children
+          : (
+            <Input
+              onKeyPress={(e) => {
+                if (e.key === ' ' && !isOpen) {
+                  e.preventDefault();
+                  onOpen();
+                }
+              }}
+              id={id}
+              autoComplete="off"
+              isDisabled={disabled}
+              name={name}
+              value={intVal}
+              onChange={(e) => e.target.value}
+              {...propsConfigs.inputProps}
+            />
+          )}
       </PopoverTrigger>
       <PopoverContentWrapper>
         <PopoverContent

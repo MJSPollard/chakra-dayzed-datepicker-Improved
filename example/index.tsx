@@ -174,6 +174,39 @@ const App = () => {
                   onDateChange={setSelectedDates}
                   closeOnSelect={isRangeChecked}
                 />
+                <Text>
+                  Mike's Custom stuff
+                </Text>
+                <RangeDatepicker
+                  selectedDates={selectedDates}
+                  onDateChange={setSelectedDates}
+                  closeOnSelect={isRangeChecked}
+                  placement="bottom"
+                >
+                  <Button>
+                    Open the Calendar
+                  </Button>
+                </RangeDatepicker>
+                <SingleDatepicker
+                  name="date-input"
+                  date={date}
+                  disabledDates={
+                    new Set([
+                      startOfDay(subDays(demoDate, 6)).getTime(),
+                      startOfDay(subDays(demoDate, 4)).getTime(),
+                      startOfDay(subDays(demoDate, 2)).getTime(),
+                    ])
+                  }
+                  minDate={subDays(demoDate, 8)}
+                  maxDate={addDays(demoDate, 8)}
+                  onDateChange={setDate}
+                  closeOnSelect={isSingleChecked}
+                  placement="bottom"
+                >
+                   <Button>
+                    Open the Calendar
+                  </Button>
+                </SingleDatepicker>
               </Section>
             </Panel>
           </TabPanel>
